@@ -1,0 +1,11 @@
+Question 1: Printing the Page Table
+In this question, a system call named vmprint() was added to print the page table of a process. It displays the virtual address, physical address, and permission flags of valid pages. It also prints the total number of valid user pages and page table pages. A test program named pttest.c calls vmprint() before and after increasing memory using sbrk(4 * 4096). This helps us see how the page table changes when memory is increased.
+
+Question 2: Lazy Memory Allocation
+In this question, lazy memory allocation was implemented. When a process requests memory using sbrk(), the memory size is increased without allocating physical pages immediately. When the process accesses a page for the first time, the kernel allocates a physical page, clears it, and maps it into the page table. A fault counter was added to the process structure, and a getfaults() system call was used to read the number of handled page faults. The program faulttest.c reserves 32 pages and writes to five different pages. The expected number of page faults is five. The program also checks that an invalid memory access kills the child process without stopping the parent.
+
+Question 3: FIFO and LRU Page Replacement
+In this question, a program named pagerepl.c was created to compare FIFO and LRU page replacement algorithms. The program uses the given reference string and displays the frame contents after each reference. It also shows whether each reference is a hit or a page fault. FIFO replaces the page that entered memory first, while LRU replaces the page that was not used for the longest time. The program compares both algorithms using 3, 4, and 5 frames. For three frames, the expected results are 15 page faults for FIFO and 12 for LRU. The program also prints the hit ratios for each case.
+
+Conclusion
+This assignment helped me understand page tables, lazy memory allocation, page faults, and page replacement algorithms. It also showed how different memory management methods affect the use of physical memory and the number of page faults.
